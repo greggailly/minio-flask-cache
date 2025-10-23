@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask-caching = "*"
+minio = "*"
+
+[dev-packages]
+pytest = "*"
+ptw = "*"
+
+[requires]
+python_version = "3.13"
