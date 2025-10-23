@@ -2,7 +2,11 @@
 Custom Flask-Cache backend using MinIO for object storage.
 
 Installation:
-# TODO
+
+Simply install with pip !
+
+pip install minio-flask-cache
+
 
 Usage:
     from flask import Flask
@@ -70,16 +74,16 @@ class MinioCacheBackend(BaseCache):
         self._ensure_bucket_exists()
 
     @classmethod
-    def factory(cls, app, args, kwargs):
-        args.append(app.config["CACHE_MINIO_ENDPOINT"])
-        args.append(app.config["CACHE_MINIO_ACCESS_KEY"])
-        args.append(app.config["CACHE_MINIO_SECRET_KEY"])
-        args.append(app.config["CACHE_MINIO_BUCKET"])
-        args.append(app.config["CACHE_MINIO_SECURE"])
-        args.append(app.config["CACHE_DEFAULT_TIMEOUT"])
-        args.append(app.config["CACHE_KEY_PREFIX"])
+    def factory(cls, app, kwargs, args, options):
+        args.append(kwargs["CACHE_MINIO_ENDPOINT"])
+        args.append(kwargs["CACHE_MINIO_ACCESS_KEY"])
+        args.append(kwargs["CACHE_MINIO_SECRET_KEY"])
+        args.append(kwargs["CACHE_MINIO_BUCKET"])
+        args.append(kwargs["CACHE_MINIO_SECURE"])
+        args.append(kwargs["CACHE_DEFAULT_TIMEOUT"])
+        args.append(kwargs["CACHE_KEY_PREFIX"])
 
-        return cls(*args, **kwargs)
+        return cls(*args)
 
     def _ensure_bucket_exists(self):
         """Create the cache bucket if it doesn't exist."""

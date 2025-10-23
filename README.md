@@ -15,7 +15,7 @@ from flask import Flask
 from flask_caching import Cache
 
 app = Flask(__name__)
-app.config['CACHE_TYPE'] = 'path.to.MinioCacheBackend'
+app.config['CACHE_TYPE'] = 'minio_cache.MinioCacheBackend'
 app.config['CACHE_MINIO_ENDPOINT'] = 'localhost:9000'
 app.config['CACHE_MINIO_ACCESS_KEY'] = 'minioadmin'
 app.config['CACHE_MINIO_SECRET_KEY'] = 'minioadmin'
@@ -29,10 +29,10 @@ cache = Cache(app)
 ### Superset cache backend
 See [Superset Docs](https://superset.apache.org/docs/6.0.0/configuration/cache) for more details on superset cache backends.
 Edit superset_config.py to add/edit the `CACHE_CONFIG` dict.
-Config can be used for all cache configurations (FILTER_STATE_CACHE_CONFIG, EXPLORE_FORM_DATA_CACHE_CONFIG, CACHE_CONFIG and DATA_CACHE_CONFIG)
+Config can be used for all cache configurations (FILTER_STATE_CACHE_CONFIG, EXPLORE_FORM_DATA_CACHE_CONFIG, CACHE_CONFIG and DATA_CACHE_CONFIG).
 ```python
 CACHE_CONFIG = {
-    "CACHE_TYPE": "MinioCacheBackend",
+    "CACHE_TYPE": "minio_cache.MinioCacheBackend",
     "CACHE_MINIO_ENDPOINT": "localhost:9000",
     "CACHE_MINIO_ACCESS_KEY": "minioadmin",
     "CACHE_MINIO_SECRET_KEY": "minioadmin",
@@ -42,3 +42,8 @@ CACHE_CONFIG = {
     "CACHE_KEY_PREFIX": "superset_"
 }
 ```
+
+## Contributions
+Contributions are welcome. Project is tested with pytest, please make sure to adjust tests if necessary.
+
+## Licence
